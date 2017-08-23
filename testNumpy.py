@@ -1,6 +1,10 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import xlrd
 
-plt.plot([10, 20, 10])
-plt.show()
+try:
+    data  = pd.read_excel(r"E:\PyCharm\Project\Numpy-Pandas\readData.xls", header=0)
+    print data
+except Exception,ex:
+    print ex
