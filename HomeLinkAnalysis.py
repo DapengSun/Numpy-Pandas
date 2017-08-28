@@ -4,6 +4,8 @@ import urllib2
 import sys
 import MySQLdb
 import time
+import openpyxl
+import xlwt
 import pandas as pd
 import numpy as np
 reload(sys)
@@ -22,7 +24,7 @@ class Analysis:
 
         df[['HousePrice']] = df[['HousePrice']].astype('int32')
         # print df.groupby(['HouseArea'])[['HousePrice']].mean()
-        print df.groupby(['HouseArea'])[['HousePrice']].max()
+        df.groupby(['HouseArea'])[['HouseArea','HousePrice']].max().to_excel("abc.xls",sheet_name="123",index=False,header=True)
         # return df
 
 
