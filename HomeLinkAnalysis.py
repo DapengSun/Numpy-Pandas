@@ -21,7 +21,8 @@ class Analysis:
         df = pd.read_sql(Sql, db, index_col="ID")
 
         df[['HousePrice']] = df[['HousePrice']].astype('int32')
-        print df.groupby(['HouseArea'])[['HousePrice']].mean()
+        # print df.groupby(['HouseArea'])[['HousePrice']].mean()
+        print df.groupby(['HouseArea'])[['HousePrice']].max()
         # return df
 
 
