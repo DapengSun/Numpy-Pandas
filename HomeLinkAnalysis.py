@@ -6,6 +6,7 @@ import MySQLdb
 import time
 import openpyxl
 import xlwt
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 reload(sys)
@@ -24,9 +25,18 @@ class Analysis:
 
         df[['HousePrice']] = df[['HousePrice']].astype('int32')
         # print df.groupby(['HouseArea'])[['HousePrice']].mean()
-        df.groupby(['HouseArea'])[['HouseArea','HousePrice']].max().to_excel("abc.xls",sheet_name="123",index=False,header=True)
+        # df.groupby(['HouseArea'])[['HouseArea','HousePrice']].max().to_excel("abc.xls",sheet_name="123",index=False,header=True)
         # return df
+        # print df.groupby(['HouseArea'])[['HousePrice']].max()
+        # print df[['HouseArea','HousePrice']].max()
+        # 极差
+        Range = df['HousePrice'].max() - df['HousePrice'].min()
+        # 组距
+        GroupLen = 10000
+        # 组数
+        GroupNum = Range / GroupLen
 
+        print GroupNum
 
     def LocalDate(self):
         return time.strftime('%Y-%m-%d',time.localtime(time.time()))
