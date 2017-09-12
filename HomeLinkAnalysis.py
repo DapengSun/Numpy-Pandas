@@ -17,6 +17,7 @@ db = MySQLdb.connect("localhost", "root", "sdmp", "spiderdb",charset='utf8')
 class Analysis:
     def __init__(self):
         # self.cursor = db.cursor()
+<<<<<<< Updated upstream
         self.GetDataSql = 'Select HouseName,HouseTotalPrice,HousePrice from HouseInfo'
     #     ,HousePattern,HouseRange,HousePace,HouseStyle,
 
@@ -56,6 +57,30 @@ class Analysis:
             print end - start
         except Exception,ex:
             print ex
+=======
+        self.GetDataSql = 'Select * from HouseInfo Where Date(CDate) = "%s"'
+
+    def GetHomeLinkData(self,Date):
+        Sql = self.GetDataSql % str(Date)
+        df = pd.read_sql(Sql, db, index_col="ID")
+
+        df[['HousePrice']] = df[['HousePrice']].astype('int32')
+        # print df.groupby(['HouseArea'])[['HousePrice']].mean()
+        # df.groupby(['HouseArea'])[['HouseArea','HousePrice']].max().to_excel("abc.xls",sheet_name="123",index=False,header=True)
+        # return df
+        # print df.groupby(['HouseArea'])[['HousePrice']].max()
+        # print df[['HouseArea','HousePrice']].max()
+        # 极差
+        # print df['HousePrice'].max() - df['HousePrice'].min()
+        # 组距
+        # GroupLen = 10000
+        # # 组数
+        # GroupNum = Range / GroupLen
+        # print GroupNum
+
+    def LocalDate(self):
+        return time.strftime('%Y-%m-%d',time.localtime(time.time()))
+>>>>>>> Stashed changes
 
 _analysis = Analysis()
 _analysis.GetHomeLinkData()
